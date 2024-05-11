@@ -39,6 +39,11 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = [
     'mytravel',
+    'account',
+
+     # for the rich text display
+    'ckeditor',
+    'ckeditor_uploader',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -125,6 +130,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
+
+CKEDITOR_UPLOAD_PATH = 'content/ckeditor/'
 
 STATIC_URL = 'static/'
 

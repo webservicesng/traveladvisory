@@ -34,7 +34,7 @@ class Category(models.Model):
 
 class TravelAdvice(models.Model):
     title = models.CharField(max_length=200)
-    rich_description = RichTextField(null=True, blank=True)
+    # rich_description = RichTextField(null=True, blank=True)
 
     description = models.TextField(blank=True, null=True)
     image = models.ImageField(upload_to='travel_advice_images/')
