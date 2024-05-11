@@ -1,0 +1,103 @@
+{% extends 'travelsite/base.html' %}
+{% load static %}
+
+
+
+{% block banner-section %}
+{% include 'mytravel/included/headerbanner.html' %}
+{% endblock %}
+
+
+
+{% block content %}
+{% comment %}  {% endcomment %}
+
+{% comment %} header banner category {% endcomment %}
+
+
+ {% comment %} the travel skyscanner flight booking  {% endcomment %}
+ {% include 'mytravel/included/skyscanerfreewidget.html' %}
+
+{% comment %} service gategory {% endcomment %}
+{% include 'mytravel/included/servicegategory.html' %}
+
+
+
+    {% comment %} travel destination {% endcomment %}
+    <section class="pt-5">
+      <div class="container  text-center">
+        <h1>Featured Destinations</h1>
+        <p class="mb-0">Check out these amaizing holiday destinations</p>
+      </div>
+      <div class="container">
+        {% include 'mytravel/included/viator-featured-cities.html' %}
+      </div>
+        
+    </section>
+  
+
+    <hr>
+    <!-- Divider Section -->
+    <section class="py-5">
+      <div class="container py-4 flight-custom-card">
+        <!-- Home listing -->
+        <div class="row align-items-stretch bg-full-left">
+          <div class="col-lg-6 pr-lg-0 order-2 order-lg-1">
+            <div class="h-100 bg-light d-flex align-items-center">
+              <div class="py-5 pr-4 pl-3 pl-lg-0">
+                <p class="text-primary font-weight-bold small text-uppercase mb-2"></p>
+                <h3 class="h4"> <a class="text-reset" href="post.html">Send Us A Quick Message</a></h3>
+                <p class="text-muted text-small mb-3">  </p>
+                <p class="text-muted text-small mb-3"> </p>
+                <ul class="list-inline small text-uppercase mb-0">
+                  <li class="list-inline-item align-middle"><img class="rounded-circle shadow-sm" src="{% static 'travelagency/img/happystudents.jpg' %}" alt="" width="30"/></li>
+                  <li class="list-inline-item mr-0 text-gray align-middle"> </li>
+                  <li class="list-inline-item align-middle mr-0"><a class="font-weight-bold reset-anchor" href="#"></a></li>
+ 
+                </ul>
+                <br>
+                <br>
+                {% comment %} form {% endcomment %}
+                <p class="text-primary font-weight-bold small text-uppercase mb-2"></p>
+                   
+                  {% include 'mytravel/included/contact-form.html' %}
+                 {% comment %} form end {% endcomment %}
+                
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 pl-lg-0 order-1 order-lg-2"><a class="d-block h-100 bg-center bg-cover" href="#" style="background: url({% static 'travelagency/img/happystudents.jpg' %})"></a></div>
+        </div>
+      </div>
+    </section>
+    <br>
+    <hr>
+   {% comment %} in dubai tours and visa service {% endcomment %}
+   {% include 'mytravel/included/indubai-tours-visa.html' %}
+
+    <!-- Job section-->
+   
+    <!-- blog section-->
+   {% include 'mytravel/included/featuredblog.html' %}
+
+
+    
+    <br>
+    <hr>
+     <section class="py-5 bg-light">
+     {% include 'mytravel/included/traveltools.html' %}
+    </section>
+
+    <section  class="py-5">
+      {% if new_signup %}
+      {% else %}
+      {% include 'mytravel/included/subscribed.html' %}
+    </section>
+    
+    
+    {% endif %}
+
+      {% include 'mytravel/included/topcategory.html' %}
+    
+    
+{% endblock %}

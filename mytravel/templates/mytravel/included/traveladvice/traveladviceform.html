@@ -1,0 +1,12 @@
+<h1>Travel Advice</h1>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+  </form>
+
+  {% for post in travel_advice_posts %}
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.description }}</p>
+    <img src="{{ post.image.url }}" alt="Travel Advice Image">
+  {% endfor %}

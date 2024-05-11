@@ -1,0 +1,90 @@
+{% load static %}
+
+
+<div class="container text-center my-3">
+    <h2 class="font-weight-light">Featured post</h2>
+    <pre>
+
+    </pre>
+    <div class="row mx-auto my-auto">
+        <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel">
+            <div class="carousel-inner w-100" role="listbox">
+                <div class="carousel-item active">
+                    <div class="col-md-4">
+                        <div class=" featuredpost-card card card-body">
+                            <img class=" img-fluid" src="{% static 'traveladvisory/img/services_card/cargo.png' %}">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Cargo </h5>
+                                <p>some descriptions</p>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="col-md-4">
+                        <div class=" featuredpost-card card card-body">
+                            <img class="img-fluid" src="{% static 'traveladvisory/img/services_card/travel.png' %}">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>travel </h5>
+                                <p>some descriptions</p>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="col-md-4">
+                        <div class=" featuredpost-card card card-body">
+                            <img class="img-fluid" src="{% static 'traveladvisory/img/services_card/utility_card.png' %}">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Utility </h5>
+                                <p>some descriptions</p>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="col-md-4">
+                        <div class=" featuredpost-card card card-body">
+                            <img class="img-fluid" src="{% static 'traveladvisory/services_card/travel.png' %}">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Travel</h5>
+                                <p>some descriptions</p>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="col-md-4">
+                        <div class="featuredpost-card card card-body">
+                            <img class="img-fluid" src="{% static 'traveladvisory/img/services_card/citytour.png' %}">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>City tour </h5>
+                                <p>some descriptions</p>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="col-md-4">
+                        <div class=" featuredpost-card card card-body">
+                            <img class="img-fluid" src="{% static 'traveladvisory/img/services_card/citytour.png' %}">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Amazing jobs </h5>
+                                <p>some descriptions</p>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev w-auto" href="#recipeCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next w-auto" href="#recipeCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    
+</div>

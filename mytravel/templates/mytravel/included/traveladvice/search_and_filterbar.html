@@ -1,0 +1,62 @@
+
+
+
+
+<section class="container flight-custom-card">
+
+  <h1>Travel Advice</h1>
+    
+    <form method="get">
+        <!-- "type":"text", "class":"form-control ",'name':'last_name', "placeholder":"Last name", "aria-label":"Last name" -->
+        <div class="input-group mb-3">
+            <input class="form-control md-3" type="search" name="search" placeholder="Search travel travel advice">
+            <select name="location">
+                <option value="">select Locations</option>
+                {% for location in locations %}
+                <option value="{{ location.name }}">{{ location.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+      
+    <div class="input-group mb-3">
+      <select name="category">
+        <option value="">select, Categories</option>
+        {% for category in categories %}
+          <option value="{{ category.name }}">{{ category.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+      <div class="input-group mb-3 mt-3 text-center">
+        <input type='submit' class= "btn btn-primary text-white " placeholder="Submit">  
+     </div>
+      <!-- <button type="submit">Filter</button> -->
+    
+    </form>
+  </div>
+
+</section>
+
+{% comment %}
+
+  <!-- <div class="travel-advice-posts">
+    {% for post in travel_advice_posts %}
+      <div class="post">
+        <img src="{{ post.image.url }}" alt="Travel Advice Image">
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.summary }}</p>
+        <p>By: {{ post.user.username }}</p>
+        <p>Comments: {{ post.comments.count }}</p>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="pagination">
+    {% if travel_advice_posts.has_previous %}
+      <a href="?page={{ travel_advice_posts.previous_page_number }}">Previous</a>
+    {% endif %}
+    {% if travel_advice_posts.has_next %}
+      <a href="?page={{ travel_advice_posts.next_page_number }}">Next</a>
+    {% endif %}
+  </div> -->
+  {% endcomment %}

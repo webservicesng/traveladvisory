@@ -1,0 +1,115 @@
+{% extends 'travelsite/base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+    <section class="py-5">
+      <div class="container text-center">
+        <p class="h6 mb-0 text-uppercase text-primary">Lifestyle</p>
+        <h1>{{travel_advice.title}}</h1>
+        <p class="mb-3">{{travel_advice.description}}</p>
+        <ul class="list-inline small text-uppercase mb-0">
+          {% comment %} <li class="list-inline-item align-middle"><img class="rounded-circle shadow-sm" src="{% static 'travelsite/img/person-1.jpg' %}" alt="" width="40"/></li> {% endcomment %}
+          <li class="list-inline-item mr-0 text-muted align-middle">By </li>
+          <li class="list-inline-item align-middle mr-0"><a class="font-weight-bold reset-anchor" href="#">{{post.author}}</a></li>
+          {% comment %} <li class="list-inline-item text-muted align-middle mr-0">|</li>
+          <li class="list-inline-item text-muted align-middle mr-0">post</li>
+          <li class="list-inline-item text-muted align-middle mr-0">|</li>
+          <li class="list-inline-item text-muted align-middle">20 Comments</li> {% endcomment %}
+        </ul>
+      </div><img class="w-100 py-5" src="{{travel_advice.image.url}}" alt="">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mb-5 mb-lg-0">
+            <div>
+           <p>{{location_advice_detail.description|safe}}</p>
+            <h6>{{location.rich_description|safe}}</h6>
+            {% comment %} {{post.detail_content|safe}} {% endcomment %}
+             </div
+
+            <h3 class="h4 mb-4">Share this post</h3>
+            <ul class="list-inline mb-5">
+             {% comment %} <li class="list-inline-item mr-1 mb-3"><iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fpresictravels.herokuapp.com/blog%2F&layout=button_count&size=small&width=77&height=20&appId" width="77" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe></li> {% endcomment %}
+
+              <li class="list-inline-item mr-1 mb-3"><a class="social-link-share facebook" href="#"><i class="fab fa-facebook-f mr-2"></i>Share</a></li>
+              <li class="list-inline-item mr-1 mb-3"><a class="social-link-share twitter" href="#"><i class="fab fa-twitter mr-2"></i>Tweet</a></li>
+              <li class="list-inline-item mr-1 mb-3"><a class="social-link-share instagram" href="#"><i class="fab fa-instagram mr-2"></i>Share</a></li>
+            </ul>
+            {% if request.user.is_authenticated %}
+            <h3 class="h4 mb-4">Leave a comment</h3>
+            <form class="mb-5" action="." method='POST'> 
+            {%csrf_token%}
+              <div class="row">
+                {% comment %} <div class="form-group col-lg-6">
+                  <input class="form-control" type="text" name="name" placeholder="Full Name e.g. Jason Doe">
+                </div> {% endcomment %}
+                {% comment %} <div class="form-group col-lg-6">
+                  <input class="form-control" type="email" name="email" placeholder="Email Address e.g. Jason@email.com">
+                </div> {% endcomment %}
+                <div class="form-group col-lg-12">
+                  {{ commentform }}
+                  {% comment %} <textarea class="form-control" name="message" rows="5" placeholder="Leave your message"></textarea> {% endcomment %}
+                </div>
+                <div class="form-group col-lg-12">
+                  <button class="btn btn-dark" type="submit">Submit your comment</button>
+                </div>
+              </div>
+            </form>
+            {% else %}
+                <div class="form-group col-lg-12">
+              <a href = "{% url 'account_login' %}" class="btn btn-dark" type="submit">Login to comment</a>
+                </div>
+             
+
+            
+            {% endif %}
+
+            <h3 class="h4 mb-4 d-flex align-items-center"><span>Comments</span><span class="text-small ml-3 text-gray">({{ post.comments.count}})</span></h3>
+            <ul class="list-unstyled comments">
+              {% comment %} <li>
+                <div class="d-flex mb-4">
+                  <div class="pr-2 flex-grow-1" style="width: 75px; min-width: 75px;"><img class="rounded-circle shadow-sm img-fluid img-thumbnail" src="{% static 'travelsite/img/person-1.jpg' %}" alt=""></div>
+                  <div class="pl-2">
+                    <p class="small mb-0 text-primary">15 Aug 2019</p>
+                    <h5>Jimmy Roy</h5>
+                    <p class="text-muted text-small mb-2">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At.</p><a class="reset-anchor text-small" href="#"><i class="fas fa-share mr-2 text-primary"></i><strong>Reply</strong></a>
+                  </div>
+                </div>
+                <ul class="list-unstyled">
+                  <li> 
+                    <div class="d-flex mb-4">
+                      <div class="pr-2 flex-grow-1" style="width: 75px; min-width: 75px;"><img class="rounded-circle shadow-sm img-fluid img-thumbnail" src="{% static 'travelsite/img/person-2.jpg' %}" alt=""></div>
+                      <div class="pl-2">
+                        <p class="small mb-0 text-primary">19 Sep 2019</p>
+                        <h5>Melissa Johanson</h5>
+                        <p class="text-muted text-small mb-2">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At.</p><a class="reset-anchor text-small" href="#"><i class="fas fa-share mr-2 text-primary"></i><strong>Reply</strong></a>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </li> {% endcomment %}
+              {% for usercomment in post.get_comments %}
+              <li>
+                <div class="d-flex mb-4">
+                  <div class="pr-2 flex-grow-1" style="width: 75px; min-width: 75px;"><img class="rounded-circle shadow-sm img-fluid img-thumbnail" src="{% static 'travelsite/img/prof_avata.jpg' %}" alt=""></div>
+                  <div class="pl-2">
+                    <p class="small mb-0 text-primary">{{ usercomment.timestamp | date}}</p>
+                    <h5>{{ usercomment.user.username }}</h5>
+                    <p class="text-muted text-small mb-2">{{ usercomment.comment}}</p><a class="reset-anchor text-small" href="#"><i class="fas fa-share mr-2 text-primary"></i><strong>Reply</strong></a>
+                  </div>
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+
+        
+            <!-- side bar -->
+            {% include 'mytravel/included/traveladvice/right_side_bar.html' %}
+          
+        
+        </div>
+    </div>
+    </section>
+{% endblock %}

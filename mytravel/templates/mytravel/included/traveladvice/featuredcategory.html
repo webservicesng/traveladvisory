@@ -1,0 +1,44 @@
+
+
+
+
+
+<div class="col-lg-8">
+    <h1 class='m-6 text-center pt-5 pb-5'> Featured Category </h1>
+      <div class="row text-center">
+          {% for post in queryset %}
+         
+        <div class="col-lg-6 mb-5"><a href="{{ post.get_absolute_url }}"><img class="img-fluid mb-4" src="{{post.image.url}}" alt=""/></a>
+          <ul class="list-inline small text-uppercase mb-0">
+            <li class="list-inline-item mr-0 text-gray align-middle">By </li>
+            <li class="list-inline-item align-middle mr-0"><a class="font-weight-bold reset-anchor" href="#">{{post.author}}</a></li>
+            
+            <li class="list-inline-item text-gray align-middle mr-0">|</li>
+            <li class="list-inline-item text-gray align-middle">{{post.post_date|timesince}} ago</li>
+          </ul>
+          
+          <h3 class="h4 mt-2"> <a class="reset-anchor" href="{{ post.get_absolute_url }}">{{post.title}}</a></h3>
+            
+          
+            <a class="reset-anchor text-gray text-uppercase small mb-2 d-block" href="#">cat title</a>
+          
+
+          <p class="text-small mb-1">{{post.shotend_desc}}</p><a class="btn btn-link" href="{{ post.get_absolute_url }}">Continue reading</a>
+        </div>
+          {% endfor %}
+
+       </div>
+      <!-- Listing navigation -->
+      <div class="p-4 bg-light mb-5">
+        <div class="row">
+          {% if queryset.has_previous %}
+          <div class="col-sm-6 text-center text-sm-left mb-2 mb-sm-0"><a class="btn btn-outline-secondary btn-sm" href="?{{ page_request_var }}={{ queryset.previouse_page_number }}"><i class="fas fa-angle-left mr-2"></i>Prev posts</a></div>
+          {% endif %}
+        
+          {% if queryset.has_next %}
+          <div class="col-sm-6 text-center text-sm-right text-right"><a class="btn btn-outline-secondary btn-sm" href="?{{ page_request_var }}={{ queryset.next_page_number }}">Next posts<i class="fas fa-angle-right ml-2"></i></a></div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+

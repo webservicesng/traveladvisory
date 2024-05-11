@@ -1,0 +1,91 @@
+{% extends 'travelsite/base.html' %}
+
+
+
+
+
+{% load static %}
+
+
+
+{% block banner-section %}
+{% include 'mytravel/included/traveladvice/banner.html' %}
+{% endblock %}
+
+
+{% block content %}
+
+  <!-- advice list listing -->
+
+  <section>
+    {% include "mytravel/included/traveladvice/search_and_filterbar.html" %}
+  </section>
+
+  <section class="pt-5">
+    <div class="container pt-5">
+        
+      <div class="row mb-5">
+            <!-- cards section -->
+          <div class="col-lg-8">
+              <h3 class='m-6 text-center pt-5 pb-5'> Travel Advice for Featured Destination </h3>
+              <pre>
+
+              </pre>
+
+              <div class="row">
+
+             
+                {% for advice in travel_advice_posts %}
+         
+                <div  class="col-lg-6 mb-5">
+                    <div class="flight-custom-card">
+                      <a href=""> <img  class="img-fluid mb-4" src="{{advice.image.url}}" alt=""/></a>
+                      <ul class="list-inline small text-uppercase mb-0">
+                        <!-- <li class="list-inline-item mr-0 text-gray align-middle">By </li> -->
+                        <!-- <li class="list-inline-item align-middle mr-0"><a class="font-weight-bold reset-anchor" href="#">{{advice.author}}</a></li> -->
+                        
+                        <!-- <li class="list-inline-item text-gray align-middle mr-0">|</li> -->
+                        <!-- <li class="list-inline-item text-gray align-middle">{{advice.updated_at|timesince}} ago</li> -->
+                      </ul>
+
+                        <div class="">
+                          <h3 class="h4 mt-2"> <a class="reset-anchor" href="">{{advice.name}}</a></h3>
+                            
+                          {% for category in advice.categories.all %}
+                            <a class="reset-anchor text-gray text-uppercase small mb-2 d-block" href="#">{{category.name}}</a>
+                          {% endfor %}
+                
+                          <p class="text-small mb-1">{{advice.shortened_description}}</p>
+                          <a style="color:white;" class=" btn btn-link btn-dark text-white" href="">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                  {% endfor %}
+              </div>
+        
+             
+            
+
+                <div class="pagination">
+                    {% if travel_advice_posts.has_previous %}
+                    <a href="?page={{ travel_advice_posts.previous_page_number }}">Previous</a>
+                    {% endif %}
+                    {% if travel_advice_posts.has_next %}
+                    <a href="?page={{ travel_advice_posts.next_page_number }}">Next</a>
+                    {% endif %}
+                </div> 
+          </div>
+
+
+           <!-- cards section end -->
+           <!-- Sidebar -->
+           {% include 'mytravel/included/traveladvice/right_side_bar.html' %}
+      </div>
+    </div>
+  
+  
+  </section>
+
+
+{% endblock %}
+
