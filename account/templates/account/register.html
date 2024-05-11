@@ -32,7 +32,7 @@
           <div class="row justify-content-center">
             <div class="col-xl-5 col-md-8">
 
-              <form action="{% url 'accounts:register' %}" type='input' method='post' class="bg-white  rounded-5 shadow-5-strong p-5">
+              <form action="{% url 'account:register' %}" type='input' method='post' class="bg-white  rounded-5 shadow-5-strong p-5">
                 {% csrf_token %}
                 <!--first and last name-->
                 <div class="row form-outline mb-4 " >
@@ -100,7 +100,7 @@
                 <!-- Submit button -->
                 <button type="submit" class="btn btn-primary btn-block">Sign in</button>
                 <div class='text-center mb-2' >
-                    <p>Already have an account <a href="{% url 'accounts:login' %}">login</a>
+                    <p>Already have an account <a href="{% url 'account:login' %}">login</a>
                 </div>
                 <div> 
                   {% for message in messages %}

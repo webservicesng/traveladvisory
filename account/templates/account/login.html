@@ -32,7 +32,7 @@
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-xl-5 col-md-8">
-              <form action="{% url 'accounts:login' %}" method='post' class="bg-white  rounded-5 shadow-5-strong p-5">
+              <form action="{% url 'account:login' %}" method='post' class="bg-white  rounded-5 shadow-5-strong p-5">
                 {% csrf_token %}
                 <!-- Email input -->
                 <div class="form-outline mb-4">
@@ -70,7 +70,7 @@
                 <button type="submit" class="btn btn-primary btn-block">SignIn</button>
                 <div class="col text-center">
                   <!-- Simple link -->
-                 <p> Don't have an account <a href="{% url 'accounts:register' %}">SignUp</a></p>
+                 <p> Don't have an account <a href="{% url 'account:register' %}">SignUp</a></p>
                 </div>
               </form>
             </div>

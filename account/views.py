@@ -23,8 +23,8 @@ def register_user(request):
     if request.method == "POST":
         form = RegistrationForm(request.POST or None)
         if form.is_valid():
-            user = User.objects.get(email=form.email).first()
-            user = User.objects.filter(email=form.email).first()
+            user = User.objects.get(email=form.email)
+            # user = User.objects.filter(email=form.email).first()
             if user:
                 email_exist = True
                 messages.error(request, 'This user already exists. Check your email or login.') 
@@ -34,7 +34,7 @@ def register_user(request):
                 form.save() 
                 messages.success(request, 'Successfully loged in ')
                 
-                return redirect('accounts:login')
+                return redirect('account:login')
             
         
         else:
@@ -45,7 +45,7 @@ def register_user(request):
             
 
     context = {'form':form}
-    return render(request, 'accounts/register.html', context)
+    return render(request, 'account/register.html', context)
 
 
 
@@ -59,10 +59,10 @@ def login_user(request):
         if user is not None:
             login(request, user)
             messages.success(request, 'Successfully loged in ')
-            return redirect(reverse('travel:index'))
+            return redirect(reverse('mytravel:index'))
         else:
             messages.error(request, 'user not found')    
-    return render(request, 'accounts/login.html')
+    return render(request, 'account/login.html')
 
 
 
@@ -70,4 +70,4 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     # return redirect(reverse('login'))
-    return redirect("travel:index")
+    return redirect("mytravel:index")
