@@ -40,6 +40,11 @@ ALLOWED_HOSTS = [
 INSTALLED_APPS = [
     'mytravel',
     'account',
+    'myjob',
+
+
+    # country list display
+    'django_countries',
 
      # for the rich text display
     'ckeditor',

@@ -1,0 +1,47 @@
+{% extends 'traveladvisory/base.html' %}
+{% load static %}
+
+
+
+
+{% block content %}
+
+{{ form.media }}
+
+<div class='container justify-content-center mb-5 mt-5'>
+<div class='mt-5 mb-5 text-center'  >
+<h3> {{title}}  JOB /{{user.username}}</h3>
+</br>
+<hr>
+</div>
+
+{{ form.media}}
+<form method = "POST" action="." enctype="multipart/form-data">
+  {% csrf_token %}
+   {{form.as_p}}
+   {{form|crispy}}
+
+
+  <button class="btn btn-primary  " style= 'width:100%; margin-top:50px;'  type='submit'>Post</button>
+  
+  
+  {% if message %}
+      <div class="alert alert-danger" role="alert">
+        {{message}}
+      </div>
+    {% else %}
+
+  {% endif %}
+
+    {% comment %} <div class="alert alert-success" role="alert">
+        Thanks for sharing
+      </div>
+      
+    {% endif %} {% endcomment %}
+
+     
+  </form>
+</div>
+
+
+{% endblock %}

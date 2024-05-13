@@ -1,0 +1,201 @@
+{% extends 'travelsite/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+    <section class="py-5">
+      <div class="container text-center">
+        {% if post.hide_company_name == True %}
+          <h5>Company name</h5>  <h6>(Confidential)</h6>
+        {% else %}
+        <h4>{{post.company_name}}</h4>
+        {% endif %}
+
+
+        <p class="h6 mb-0 text-uppercase text-primary">{{post.post_date}}</p>
+        
+        <h5>Job position</h5><h1>{{post.job_title}}</h1>
+        <p class="mb-3">{{post.shotend_esc}}</p>
+        <ul class="list-inline small text-uppercase mb-0">
+          <li class="list-inline-item align-middle"><img class="rounded-circle shadow-sm" src="{{post.job_admin.profile_pic.url}}" alt="" width="40"/></li>
+          <li class="list-inline-item mr-0 text-muted align-middle">By </li>
+          <li class="list-inline-item align-middle mr-0"><a class="font-weight-bold reset-anchor" href="#">{{post.job_admin.user.username}}</a></li>
+          {% comment %} <li class="list-inline-item text-muted align-middle mr-0">|</li>
+          <li class="list-inline-item text-muted align-middle mr-0">post</li>
+          <li class="list-inline-item text-muted align-middle mr-0">|</li>
+          <li class="list-inline-item text-muted align-middle">20 Comments</li> {% endcomment %}
+        </ul>
+      </div>
+      <img class="w-100 py-5" src="" alt="">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mb-5 mb-lg-0">
+          
+          {% comment %} added from boostrap {% endcomment %}
+            <div>
+                <div class="card" style="width: auto;">
+                    {% comment %} <img src="..." class="card-img-top" alt="..."> {% endcomment %}
+                    <div class="card-body">
+                    
+                     <span> <p class="card-title text-bold"><span><h5>location:  </h5></span>{{post.location}} | {{post.city.name }}</span>
+                      <div>
+                       <h5 class="text-left color-gold"> Description</h5>
+                      <p class="card-text">{{post.job_description }}</p>
+                      </div>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                      <div>
+                        <li class="list-group-item">
+                          {% if post.gender == True %}
+                          <span>Gender : </span><span> Male</span>
+                          {% elif post.gender == False %}
+                          <span>Gender : </span><span> Female</span>
+                          {% elif post.gender == any %}
+
+                          <span>Gender : </span><span> Any</span>
+                          
+                          {% endif %}
+                          </li>
+                        <li class="list-group-item">
+                        <span>Educational Level: </span><span>{% for edu_level in post.educational_level.all %}{{edu_level.title}}{% endfor %} </span>
+                        </li>
+                        <li class="list-group-item">
+                          <span>Career Level : </span><span>
+                            {% for careeritem in post.career_level.all %}
+                            {{careeritem}} </span>
+                            {% endfor %}
+                          </li>
+                          <li class="list-group-item">
+                            <span>Required Nationality : </span><span>{% for country in post.nationality %}{{country.name}} {% endfor %}</span>
+                          </li>
+                          <li class="list-group-item">
+                            <span>Employment Type: </span><span>{{post.employment_type.title}} </span>
+                          </li>
+                          <li class="list-group-item">
+                            <span>Monthly Salary: </span><span>
+                              {% for salary in post.monthly_salary.all %}
+                              {{salary.amount}} </span>
+                              {% endfor %}
+                          </li>
+                          <li class="list-group-item">
+                            <span>Cv required : </span><span>{{post.cv_required}} </span>
+                          </li>
+                          <li class="list-group-item">
+                            <span>Job Admin : </span><span>{{post.job_admin.user.username}} </span>
+                          </li>
+                          
+                      </div>
+                      
+                      <div>
+                        <li class="list-group-item">
+                        <span> <h5> Requirement</h5> </span><span>{{post.requirements}}</span>
+                        </li>
+                      </div>
+                      
+                    </ul>
+                    {% comment %} <div class="card-body">
+                      <a href="{{post.application_link}}" class="card-link">Apply here</a>
+                      
+                    </div> {% endcomment %}
+                  </div>
+                 </div>
+           
+            <div>
+                      <div>
+                        <a href="{{post.application_link}}" class="btn btn-primary btn-block destination-btn text-white "><button>Apply here</button></a>
+                      </div>
+            {{post.more_detail|safe}}
+            <div class="mb-5 text-center"><img class="mb-3 rounded-circle img-thumbnail shadow-sm" src="" alt="" width="110">
+              <h3 class="h4"></h3>
+                {% comment %} <li class="list-inline-item"><a class="reset-anchor" href=""><button class=" btn btn-primary fab fa-new">Create New</button></a></li>
+                <li class="list-inline-item"><a class="reset-anchor" href=""><button  class=" btn btn-primary fab fa-create">Edit Post</button></a></li>
+                <li class="list-inline-item"><a class="reset-anchor" href="#"><button class=" btn btn-primary fab fa-delete">Delete Post</button></a></li> {% endcomment %}
+                <li class="list-inline-item"><a class="reset-anchor" href="#"><i class="fab fa-vimeo-v"></i></a></li>
+              </ul>
+            </div>                
+             </div>
+
+            <h3 class="h4 mb-4">Share this post</h3>
+            <ul class="list-inline mb-5">
+             {% comment %} <li class="list-inline-item mr-1 mb-3"><iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fpresictravels.herokuapp.com/presic-jobs/{{post.id}}%2F&layout=button_count&size=small&width=77&height=20&appId" width="77" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe></li> {% endcomment %}
+
+              {% comment %} <li class="list-inline-item mr-1 mb-3"><a class="social-link-share facebook" href="https://www.facebook.com/dialog/share?app_id=145634995501895&display=popup&href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2F&redirect_uri=https%3A%2F%2Fdevelopers.facebook.com%2Ftools%2Fexplorer"><i class="fab fa-facebook-f mr-2"></i>Share</a></li> {% endcomment %}
+              <li class="list-inline-item mr-1 mb-3"><a class="social-link-share facebook" href=""><i class="fab fa-facebook-f mr-2"></i>Share</a></li>
+              <li class="list-inline-item mr-1 mb-3"><a class="social-link-share twitter" href="#"><i class="fab fa-twitter mr-2"></i>Share</a></li>
+              <li class="list-inline-item mr-1 mb-3"><a class="social-link-share instagram" href="#"><i class="fab fa-instagram mr-2"></i>Share</a></li>
+              <li class="list-inline-item mr-1 mb-3"><a class="social-link-share whatapp" href="#"><i class="fab fa-whatapp mr-2"></i>Share</a></li>
+            </ul>
+            {% if request.user.is_authenticated %}
+            <h3 class="h4 mb-4">Leave a comment</h3>
+            <form class="mb-5" action="." method='POST'> 
+            {%csrf_token%}
+              <div class="row">
+                {% comment %} <div class="form-group col-lg-6">
+                  <input class="form-control" type="text" name="name" placeholder="Full Name e.g. Jason Doe">
+                </div> {% endcomment %}
+                {% comment %} <div class="form-group col-lg-6">
+                  <input class="form-control" type="email" name="email" placeholder="Email Address e.g. Jason@email.com">
+                </div> {% endcomment %}
+                <div class="form-group col-lg-12">
+                  {{ commentform }}
+                  {% comment %} <textarea class="form-control" name="message" rows="5" placeholder="Leave your message"></textarea> {% endcomment %}
+                </div>
+                <div class="form-group col-lg-12">
+                  <button class="btn btn-dark" type="submit">Submit your comment</button>
+                </div>
+              </div>
+            </form>
+            {% else %}
+                <div class="form-group col-lg-12">
+              <a href = "{% url 'account_login' %}" class="btn btn-dark" type="submit">Login to comment</a>
+                </div>
+             
+
+            
+            {% endif %}
+
+            <h3 class="h4 mb-4 d-flex align-items-center"><span>Comments</span><span class="text-small ml-3 text-gray">({{ post.comments.count}})</span></h3>
+            <ul class="list-unstyled comments">
+              {% comment %} <li>
+                <div class="d-flex mb-4">
+                  <div class="pr-2 flex-grow-1" style="width: 75px; min-width: 75px;"><img class="rounded-circle shadow-sm img-fluid img-thumbnail" src="{% static 'travelsite/img/person-1.jpg' %}" alt=""></div>
+                  <div class="pl-2">
+                    <p class="small mb-0 text-primary">15 Aug 2019</p>
+                    <h5>Jimmy Roy</h5>
+                    <p class="text-muted text-small mb-2">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At.</p><a class="reset-anchor text-small" href="#"><i class="fas fa-share mr-2 text-primary"></i><strong>Reply</strong></a>
+                  </div>
+                </div>
+                <ul class="list-unstyled">
+                  <li> 
+                    <div class="d-flex mb-4">
+                      <div class="pr-2 flex-grow-1" style="width: 75px; min-width: 75px;"><img class="rounded-circle shadow-sm img-fluid img-thumbnail" src="{% static 'travelsite/img/person-2.jpg' %}" alt=""></div>
+                      <div class="pl-2">
+                        <p class="small mb-0 text-primary">19 Sep 2019</p>
+                        <h5>Melissa Johanson</h5>
+                        <p class="text-muted text-small mb-2">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At.</p><a class="reset-anchor text-small" href="#"><i class="fas fa-share mr-2 text-primary"></i><strong>Reply</strong></a>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </li> {% endcomment %}
+              {% for usercomment in post.get_comments %}
+              <li>
+                <div class="d-flex mb-4">
+                  <div class="pr-2 flex-grow-1" style="width: 75px; min-width: 75px;"><img class="rounded-circle shadow-sm img-fluid img-thumbnail" src="{% static 'travelsite/img/prof_avata.jpg' %}" alt=""></div>
+                  <div class="pl-2">
+                    <p class="small mb-0 text-primary">{{ usercomment.timestamp | date}}</p>
+                    <h5>{{ usercomment.user.username }}</h5>
+                    <p class="text-muted text-small mb-2">{{ usercomment.comment}}</p><a class="reset-anchor text-small" href="#"><i class="fas fa-share mr-2 text-primary"></i><strong>Reply</strong></a>
+                  </div>
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+{% endblock %}

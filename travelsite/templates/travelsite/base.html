@@ -113,7 +113,7 @@
                 <!-- Link--><a class="nav-link" href="">Destination</a>
               </li>
               <li class="nav-item px-1">
-                 <!-- Link--><a class="nav-link" href="">Jobs</a> 
+                 <!-- Link--><a class="nav-link" href="{% url 'myjob:home' %}">Jobs</a> 
               </li>
               {% if request.user.is_authenticated %}
                 <li class="nav-item px-1">
