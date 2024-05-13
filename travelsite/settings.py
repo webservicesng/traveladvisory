@@ -29,10 +29,10 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
-     'travelsite-svbl.onrender.com', 'localhost', '127.0.0.1', '::1'
+     'https://travelsite-svbl.onrender.com', "travelsite-svbl.onrender.com", 'localhost', '127.0.0.1', '::1'
     ]
 
 # Application definition
