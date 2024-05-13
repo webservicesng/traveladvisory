@@ -15,6 +15,8 @@ from django.db import IntegrityError
 
 from django.contrib.auth.decorators import login_required, permission_required
 
+# the job admin
+from django.core.exceptions import ObjectDoesNotExist
 
 
 def searchjob(request):
@@ -28,26 +30,33 @@ def searchjob(request):
     context={
         'queryset':queryset
     }
-    return render(request, 'jobportal/search_result.html', context)
+    return render(request, 'myjob/search_result.html', context)
     
     
 
 def createJobAdmin(user):
-    jobadmin = JobAdmin.create(user=user)
+    jobadmin = JobAdmin.objects.create(user=user)
     jobadmin.save()
     return jobadmin
 
 
-def getJobAdmin(user):
-    jobadmin = JobAdmin.objects.filter(user=user)
+# def getJobAdmin(user):
+#     jobadmin = JobAdmin.objects.filter(user=user)
     
-    if jobadmin.exists :
+#     if jobadmin.exists :
         
-        print('this is the jober : ', jobadmin[0])
-        return jobadmin[0] 
-    else:
-        pass
-        
+#         print('this is the jober : ', jobadmin[0])
+#         return jobadmin[0] 
+#     else:
+#         passfrom django.core.exceptions import ObjectDoesNotExist
+
+def get_job_admin(user: User) -> JobAdmin:
+    try:
+        return JobAdmin.objects.get(user=user)
+    except ObjectDoesNotExist:
+        createJobAdmin(user)
+        return get_job_admin(user)
+        # raise ValueError(f"No JobAdmin found for user {user.username}")
     
 
 def jobhome(request):
@@ -106,7 +115,7 @@ def city_job(request, id):
         'queryset':paginated_queryset,
         'title':title,
         }
-    return render(request, 'jobportal/cityjobs.html', context)
+    return render(request, 'myjob/cityjobs.html', context)
     
 
 def catjobs(request, id):
@@ -129,7 +138,7 @@ def catjobs(request, id):
         'queryset':paginated_queryset,
         'title':title,
         }
-    return render(request, 'jobportal/job_category.html', context)
+    return render(request, 'myjob/job_category.html', context)
 
 
 def jobDetail(request, id):
@@ -143,7 +152,7 @@ def jobDetail(request, id):
     
     }
    
-    return render(request, 'jobportal/jobdetail.html', context)
+    return render(request, 'myjob/jobdetail.html', context)
 
 def createJob(request):
     title = "CREATE"
@@ -155,7 +164,7 @@ def createJob(request):
         try:
             form = JobListForm(request.POST or None, request.FILES or None)
             user = request.user          
-            jobadmin = getJobAdmin(user)
+            jobadmin = get_job_admin(user)
             print('this is the : {}' .format(jobadmin))
             if request.method == "POST":
                 if form.is_valid():
@@ -168,7 +177,7 @@ def createJob(request):
             e = "please contact admin  to gain access to post your blog"
             err_msg = e
             print(err_msg)
-            return redirect('jobportal')
+            return redirect('myjob')
     else:
         return redirect('accounts:login')
     message = err_msg
@@ -179,7 +188,7 @@ def createJob(request):
         'form':form,
         }
 
-    return render(request, 'jobportal/createjob.html', context)
+    return render(request, 'myjob/create_job.html', context)
 
    # job post update
 
@@ -190,7 +199,7 @@ def updateJob(request, id):
     post = get_object_or_404(Jobs, id=id)
     form = JobListForm(request.POST or None, request.FILES or None, instance=post)
     user = request.user
-    jobadmin = getJobAdmin(user)
+    jobadmin = get_job_admin(user)
     
     if request.method == "POST":
         if form.is_valid():
@@ -212,11 +221,11 @@ def updateJob(request, id):
         }
 
     
-    return render(request, 'jobportal/createjob.html', context)
+    return render(request, 'myjob/createjob.html', context)
 
 
 def delete_job(request, id):
     jobpost = get_object_or_404(Jobs, id=id)
     print(dir(jobpost))
     jobpost.delete()
-    return redirect('dashboard')
+    return redirect('account:dashboard')

@@ -117,7 +117,10 @@
               </li>
               {% if request.user.is_authenticated %}
                 <li class="nav-item px-1">
-                  <!-- Link--><a class="nav-link" href="{% url 'account:logout' %}">logout</a>
+                  <!-- Link--><a class="nav-link" href="{% url 'account:logout' %}">Logout</a>
+                </li>
+                <li class="nav-item px-1">
+                 <!-- Link--><a class="nav-link" href="{% url 'account:userdashboard_' %}">Dashboard</a>
                 </li>
               {% else %}
                  

@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from myjob.views import city_job, catjobs, jobDetail, updateJob, delete_job
+from myjob.views import city_job, catjobs, createJob, jobDetail, updateJob, delete_job
 
 
 urlpatterns = [
@@ -28,7 +28,7 @@ urlpatterns = [
 
     path('city/<id>/', city_job, name='city-job'),
     path('category/<id>/', catjobs, name='job-cats'),
-    
+       
     path('<id>/', jobDetail, name='job-detail'),
     path('update-job<id>/', updateJob, name='job-update'),
     path('delete-job/<id>/', delete_job, name='delete-job'),

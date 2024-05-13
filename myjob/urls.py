@@ -8,7 +8,7 @@ from . import views
 app_name = "myjob"
 
 urlpatterns = [
-    
+    path('create-job', views.createJob, name="create-job"),
     path('jobview', views.jobhome, name="home"),
     
 ]

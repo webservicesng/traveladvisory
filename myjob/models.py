@@ -121,6 +121,18 @@ class Jobs(models.Model):
     
     def __str__(self):
         return self.job_title
+
+    def get_absolute_url(self):
+        return reverse('job-detail', kwargs={"id":self.id})
+    
+   
+    def get_update_url(self):
+        return reverse('job-update', kwargs={"id":self.id})
+
+    def get_delete_post(self):
+        return reverse('delete-job', kwargs={"id":self.id})
+
+
     
     def get_gender(self):
         return self.Jobs.gender
@@ -129,13 +141,3 @@ class Jobs(models.Model):
         return self.job_description[:100] + '...'
 
 
-
-class Application(models.Model):
-    job_listing = models.ForeignKey(Jobs, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    resume = models.FileField(upload_to='resumes/')
-    cover_letter = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    

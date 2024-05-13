@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'account',
     'myjob',
 
+    'crispy_forms',
+    "crispy_bootstrap4",
+
 
     # country list display
     'django_countries',
@@ -137,6 +140,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 CKEDITOR_UPLOAD_PATH = 'content/ckeditor/'
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
