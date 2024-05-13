@@ -15,7 +15,14 @@
 
 
     <!-- {{ form.media }} -->
-    <div style = "" class="" >
+    <div style = "margin-top: 70px;
+              margin:20px;
+              padding:18px;
+              border-style: groove;
+              border-color: #0c4160;
+              border-width: 3px !important;
+              background: #fff;" class="" >
+              
        <div class='container justify-content-center mb-5 mt-5'>
         <div class='mt-5 mb-5 text-center'  >
           <h3> {{title}}  JOB /{{user.username}}</h3>
@@ -26,15 +33,11 @@
           {{ form.media}}
           <form method = "POST" action="." enctype="multipart/form-data">
             {% csrf_token %}
-            
-            
+                        
             {% crispy form %}
-            
-        
 
+            <input type="submit" class="btn btn-primary" value="Post" style="width:100%; margin-top:50px;">
 
-        <button class="btn btn-primary  " style= 'width:100%; margin-top:50px;'  type='submit'>Post</button>
-        
         
         {% if message %}
             <div class="alert alert-danger" role="alert">

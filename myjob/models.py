@@ -95,7 +95,7 @@ class Jobs(models.Model):
     job_description = models.TextField(blank=True, null=True)
     # job_description = HTMLField("job details")
     gender = models.BooleanField(choices=((None, "Any"), (True, "male"), (False, "female")), blank= True, null=True)
-    
+    job_city = models.CharField(max_length=100, blank=True, null=True)
     location = models.CharField(max_length=50, blank=True, null=True)
     nationality = CountryField(multiple=True, blank=True, blank_label='optional')
     career_level = models.ManyToManyField(CareerLevel)

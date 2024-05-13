@@ -115,9 +115,9 @@ thisi is form the jobview
                       <a class="text-reset text-decoration-none" href="">
                       <img class="mb-4" src="{% static 'travelsite/img/bag' %}" alt="" height="150">
                       <h3 class="h5">{{post.job_title}}</h3>
-                      <p class="text-small text-muted">{{post.shotend_desc}}</p></a>
+                      <p class="text-small text-muted">{{post.shotend_desc|safe}}</p></a>
                       <div>
-                        <a href=""><button>View Job</button></a>
+                        <a href="{{ post.get_absolute_url }}"><button>View Job</button></a>
                       </div>
                     </div>
                 </div>

@@ -23,14 +23,14 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('mytravel.urls') ),
     path('', include('account.urls') ),
-    path('', include('myjob.urls') ),
+    
 
 
     path('city/<id>/', city_job, name='city-job'),
     path('category/<id>/', catjobs, name='job-cats'),
        
-    path('<id>/', jobDetail, name='job-detail'),
+    path('<id>/job_detail/', jobDetail, name='job-detail'),
     path('update-job<id>/', updateJob, name='job-update'),
     path('delete-job/<id>/', delete_job, name='delete-job'),
-
+    path('', include('myjob.urls') ),
 ]

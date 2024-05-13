@@ -6,7 +6,7 @@
 
 
     <section class="py-5">
-      <div class="container text-center">
+      <div class="container text-left justify-content-left">
         {% if post.hide_company_name == True %}
           <h5>Company name</h5>  <h6>(Confidential)</h6>
         {% else %}
@@ -17,7 +17,7 @@
         <p class="h6 mb-0 text-uppercase text-primary">{{post.post_date}}</p>
         
         <h5>Job position</h5><h1>{{post.job_title}}</h1>
-        <p class="mb-3">{{post.shotend_esc}}</p>
+        <p class="mb-3">{{post.shotend_esc|safe}}</p>
         <ul class="list-inline small text-uppercase mb-0">
           <li class="list-inline-item align-middle"><img class="rounded-circle shadow-sm" src="{{post.job_admin.profile_pic.url}}" alt="" width="40"/></li>
           <li class="list-inline-item mr-0 text-muted align-middle">By </li>
@@ -42,7 +42,7 @@
                      <span> <p class="card-title text-bold"><span><h5>location:  </h5></span>{{post.location}} | {{post.city.name }}</span>
                       <div>
                        <h5 class="text-left color-gold"> Description</h5>
-                      <p class="card-text">{{post.job_description }}</p>
+                      <p class="card-text">{{post.job_description|safe }}</p>
                       </div>
                     </div>
                     <ul class="list-group list-group-flush">
@@ -127,6 +127,10 @@
               <li class="list-inline-item mr-1 mb-3"><a class="social-link-share instagram" href="#"><i class="fab fa-instagram mr-2"></i>Share</a></li>
               <li class="list-inline-item mr-1 mb-3"><a class="social-link-share whatapp" href="#"><i class="fab fa-whatapp mr-2"></i>Share</a></li>
             </ul>
+
+
+
+            
             {% if request.user.is_authenticated %}
             <h3 class="h4 mb-4">Leave a comment</h3>
             <form class="mb-5" action="." method='POST'> 

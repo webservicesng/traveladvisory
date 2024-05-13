@@ -173,6 +173,8 @@ def createJob(request):
                     return redirect(reverse("job-detail", kwargs={
                         'id':form.instance.id
                     }))
+                else:
+                    print('this complete the form fields')
         except IntegrityError as e :
             e = "please contact admin  to gain access to post your blog"
             err_msg = e
