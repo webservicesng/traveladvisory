@@ -23,7 +23,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('mytravel.urls') ),
     path('', include('account.urls') ),
-    
+
+    # for the debug
+    path('__debug__/', include('debug_toolbar.urls')),   
 
 
     path('city/<id>/', city_job, name='city-job'),

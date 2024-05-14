@@ -108,7 +108,7 @@ class Jobs(models.Model):
     skill_set3 = models.CharField(max_length=300, blank=True, null=True)
     cv_required = models.BooleanField(default=False)
     post_date = models.DateTimeField(auto_now_add=True)
-    monthly_salary = models.ManyToManyField(MonthlySalary, blank=True, null=True)
+    monthly_salary = models.ManyToManyField(MonthlySalary)
     salary = models.CharField(max_length=50, blank=True, null=True)
     featuredjobs = models.BooleanField(default=False)
     category = models.ManyToManyField(JobCategory)
