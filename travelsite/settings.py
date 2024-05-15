@@ -16,6 +16,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
+import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -29,7 +30,9 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+
+DEBUG = os.environ.get('DEBUG', 'True') == "True"
+print(DEBUG)
 
 ALLOWED_HOSTS = [
      'https://travelsite-svbl.onrender.com', "travelsite-svbl.onrender.com", 'localhost', '127.0.0.1', '::1'
@@ -145,6 +148,30 @@ DATABASES = {
     }
 }
 
+USER = os.environ.get('USER')
+PASSWORD = os.environ.get('PASSWORD')
+
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'website_posgresql_presictravels',
+        'USER': '%s' %USER,
+        'PASSWORD': '%s' %PASSWORD,
+        
+        # USER :'jymuhheqkxltxr',
+        # PASSWORD :'9f13271856045b47c8d7d02a50d0e6aef03a03294c381c527aca28fe49c3d95c',
+
+        'HOST': 'dpg-cp26apn79t8c73fngop0-a',
+        'PORT': '5432',
+    }
+}
+DATABASE_URL = os.getenv('DATABASE_URL ')
+
+# this will enable database update from development environmet
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
