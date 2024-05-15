@@ -40,6 +40,7 @@ ALLOWED_HOSTS = [
 INSTALLED_APPS = [
     'mytravel',
     'account',
+    "marketing",
     'myjob',
 
     'crispy_forms',

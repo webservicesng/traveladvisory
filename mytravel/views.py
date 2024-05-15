@@ -6,15 +6,45 @@ from .models import TravelAdvice, Location, Category
 
 from django.db.models import Q
 from django.core.paginator import Paginator
+from marketing.models import Signup, Reports
+from marketing.forms import NewsletterForm, ContactForm
 # Create your views here.
 
 
 
+from django.contrib import messages
+
+
 def index(request):
+    contact_form = ContactForm()
+    if request.method == "POST":
+        if contact_form.is_valid():
+            contact_form = ContactForm(request.POST)
+            contact_form.save()
+            messages.success(request, 'Form submitted successfully!')
+        else:
+            messages.error(request, 'Error submitting form.')
 
-    context = {'home_lamba': 'this is the index page. '}
 
+    signup_form = NewsletterForm()
+    
+    if request.method == "POST":
+        if signup_form.is_valid():
+            signup_form.save()
+            messages.success(request, 'you have successfully subscribed for our newsletter!')
+        else:
+            messages.error(request, 'Error submitting form.')
+
+    
+    
+    context = {"contact_form": contact_form, 
+               "messages": list(request._messages),
+               "signup_form":signup_form
+               }
+    
     return render(request, 'mytravel/index.html', context)
+
+
 
 
 
