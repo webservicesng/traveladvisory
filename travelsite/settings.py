@@ -177,7 +177,15 @@ USE_TZ = True
 
 
 # added the staticfiles_storage for compresing and catching of our staticfiles
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# this solve the server error problem for me
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage", 
+    },
+}
+
+# this will exclude the file path which may causing the server error
+# STATICFILES_EXCLUDE = ['travelsite/vendor/bootstrap/css/bootstrap-grid.css.map']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
