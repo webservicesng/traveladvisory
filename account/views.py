@@ -39,7 +39,7 @@ def register_user(request):
     
 
     context = {'form':form}
-    return render(request, 'accounts/register.html', context)
+    return render(request, 'account/register.html', context)
 
 
 def login_user(request):
@@ -51,10 +51,10 @@ def login_user(request):
         if user is not None:
             login(request, user)
             messages.success(request, 'Successfully loged in ')
-            return redirect('dashboard')
+            return redirect('account:userdashboard_')
         else:
             messages.error(request, 'user not found')    
-    return render(request, 'accounts/login.html')
+    return render(request, 'account/login.html')
 
 
 
@@ -62,24 +62,24 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     # return redirect(reverse('login'))
-    return redirect("mytravel:index")
+    return redirect("login")
 
 
 # @login_required(login_url='login')
 # @allowed_users(allowed_roles=['jobadmin', 'blogadmin'])
 def user_dashbaord(request):
            
-    # try:
-    #     admin_job = request.user.jobadmin.jobs_set.all()
-    # except:
-    #     return render(request, 'account/register.html')
+    try:
+        admin_job = request.user.jobadmin.jobs_set.all()
+    except:
+        return render(request, 'account/register.html')
     
-    # # if request.user.author:
-    # #     author_posts = request.user.author.get_author_posts()
-    # # else:
-    # #     pass
-    # context = {'admin_job':admin_job,
-    context = {}
+    # if request.user.author:
+    #     author_posts = request.user.author.get_author_posts()
+    # else:
+    #     pass
+    context = {'admin_job':admin_job}
+   
                
     #            }
     return render(request, 'account/dashboard.html', context)

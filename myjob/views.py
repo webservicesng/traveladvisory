@@ -62,8 +62,11 @@ def get_job_admin(user: User) -> JobAdmin:
 def jobhome(request):
     
     most_recent_post = Jobs.objects.order_by("-post_date")[0:6]
+
     
     featured_post = Jobs.objects.all()
+    # added this to avoid inconsistendcy with the pagenation
+    featured_post = featured_post.order_by('id')
     
     paginator = Paginator(featured_post, 8)
     page_request_var = 'page'
@@ -223,7 +226,7 @@ def updateJob(request, id):
         }
 
     
-    return render(request, 'myjob/createjob.html', context)
+    return render(request, 'myjob/create_job.html', context)
 
 
 def delete_job(request, id):
