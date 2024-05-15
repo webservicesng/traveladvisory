@@ -148,25 +148,34 @@ DATABASES = {
     }
 }
 
-USER = os.environ.get('USER')
-PASSWORD = os.environ.get('PASSWORD')
-
-
+USER = os.getenv('USER')
+PASSWORD = os.getenv('PASSWORD')
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'website_posgresql_presictravels',
-        'USER': '%s' %USER,
-        'PASSWORD': '%s' %PASSWORD,
-        
-        # USER :'jymuhheqkxltxr',
-        # PASSWORD :'9f13271856045b47c8d7d02a50d0e6aef03a03294c381c527aca28fe49c3d95c',
-
-        'HOST': 'dpg-cp26apn79t8c73fngop0-a',
-        'PORT': '5432',
-    }
+'default': {
+'ENGINE': 'django.db.backends.postgresql',
+'NAME': 'website-posgresql-presictravels',
+'USER': 'USER',
+'PASSWORD': 'PASSWORD', # Replace with the actual password
+'HOST': 'dpg-cp26apn79t8c73fngop0-a',
+'PORT': '5432',
 }
+}
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'website_posgresql_presictravels',
+#         'USER': 'USER',
+#         'PASSWORD': "PASSWORD",
+        
+#         # USER :'jymuhheqkxltxr',
+#         # PASSWORD :'9f13271856045b47c8d7d02a50d0e6aef03a03294c381c527aca28fe49c3d95c',
+
+#         'HOST': 'dpg-cp26apn79t8c73fngop0-a',
+#         'PORT': '5432',
+#     }
+# }
 DATABASE_URL = os.getenv('DATABASE_URL ')
 
 # this will enable database update from development environmet
