@@ -31,7 +31,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = os.environ.get('DEBUG', 'True') == "True"
+DEBUG = os.environ.get('DEBUG', 'False') == "False"
 print(DEBUG)
 
 ALLOWED_HOSTS = [
@@ -141,12 +141,12 @@ WSGI_APPLICATION = 'travelsite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 USER = os.getenv('USER')
 PASSWORD = os.getenv('PASSWORD')
@@ -155,32 +155,23 @@ DATABASES = {
 'default': {
 'ENGINE': 'django.db.backends.postgresql',
 'NAME': 'website-posgresql-presictravels',
-'USER': 'USER',
-'PASSWORD': 'PASSWORD', # Replace with the actual password
+'USER': USER,
+'PASSWORD': PASSWORD, # Replace with the actual password
 'HOST': 'dpg-cp26apn79t8c73fngop0-a',
 'PORT': '5432',
 }
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'website_posgresql_presictravels',
-#         'USER': 'USER',
-#         'PASSWORD': "PASSWORD",
-        
-#         # USER :'jymuhheqkxltxr',
-#         # PASSWORD :'9f13271856045b47c8d7d02a50d0e6aef03a03294c381c527aca28fe49c3d95c',
-
-#         'HOST': 'dpg-cp26apn79t8c73fngop0-a',
-#         'PORT': '5432',
-#     }
-# }
 DATABASE_URL = os.getenv('DATABASE_URL ')
+# DATABASES = {
+#     'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
+#     }
 
 # this will enable database update from development environmet
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -217,7 +208,10 @@ USE_TZ = True
 # this solve the server error problem for me
 STORAGES = {
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage", 
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+    },
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
 }
 

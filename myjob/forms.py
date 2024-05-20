@@ -9,11 +9,14 @@ from .models import Jobs
 
 class JobListForm(forms.ModelForm):
 
+# for crispy forms
     def __init__(self, *args, **kwargs):
         super(JobListForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_show_labels = True 
-    
+
+        
+    # for ckeditor
     job_description = forms.CharField(widget=CKEditorWidget())
 
     class Meta:

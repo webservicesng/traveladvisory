@@ -50,8 +50,40 @@ def index(request):
 
 # @login_required
 
+# this is for the API Call function
+import requests
 
-def travel_advice(request):  
+def travel_advisory(request):
+    travel_advice_posts = TravelAdvice.objects.all()
+    
+    category = Category.objects.all()[:3]
+
+    locations = Location.objects.all()
+
+    if request.method == 'POST':
+        country_code = request.POST.get('country')
+        api_url = f'https://www.travel-advisory.info/api?countrycode={country_code}'
+        response = requests.get(api_url)
+        data = response.json()
+        # Process the data and extract the relevant advisory information
+        advisory_info = {
+            'country': data['data'][0]['name'],
+            'advisory_score': data['data'][0]['Advisory']['score'],
+            'advisory_message': data['data'][0]['Advisory']['message']
+        }
+
+        context = {
+            'travel_advice_posts': travel_advice_posts,
+            'locations': locations,
+            'category': category,
+            'advisory_info': advisory_info
+        }
+        return render(request, 'mytravel/travel_advice.html', context)
+    else:
+        return render(request, 'mytravel/travel_advice.html')
+
+
+def travel_advise(request):  
 
     
     travel_advice_posts = TravelAdvice.objects.all()

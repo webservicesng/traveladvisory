@@ -1,4 +1,5 @@
 node_modules/
+traveladvisory.py
 venv/
 __pycache__/
 .env
