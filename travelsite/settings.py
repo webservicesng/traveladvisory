@@ -154,10 +154,10 @@ PASSWORD = os.getenv('PASSWORD')
 DATABASES = {
 'default': {
 'ENGINE': 'django.db.backends.postgresql',
-'NAME': 'website-posgresql-presictravels',
+'NAME': 'prisictravels-a',
 'USER': USER,
 'PASSWORD': PASSWORD, # Replace with the actual password
-'HOST': 'dpg-cp26apn79t8c73fngop0-a',
+'HOST': 'dpg-cs66b7ij1k6c73a08g5g-a',
 'PORT': '5432',
 }
 }
