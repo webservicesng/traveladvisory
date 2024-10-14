@@ -35,7 +35,7 @@ DEBUG = os.environ.get('DEBUG', 'False') == "False"
 print(DEBUG)
 
 ALLOWED_HOSTS = [
-     'https://travelsite-svbl.onrender.com', "travelsite-svbl.onrender.com", 'localhost', '127.0.0.1', '::1'
+     'https://presictravels.onrender.com', 'presictravels.onrender.com', 'localhost', '127.0.0.1', '::1'
     ]
 
 # Application definition
